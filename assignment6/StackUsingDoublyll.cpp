@@ -10,6 +10,7 @@ struct DoublyNode{
 DoublyNode* createNode(int val){
 	DoublyNode *temp = new DoublyNode;
 	temp->data = val;
+	temp->next = NULL;
 	return temp;
 }
 
@@ -29,7 +30,17 @@ class Stack{
 	//push the value at the back
 	void push(int val){
 		cout<<"pushing the val: "<<val<<" at the back of queue\n";
-		tail=createNode(val);
+		DoublyNode*temp1=createNode(val);
+		if(tail=NULL){
+			tail=temp1;
+			tail->prev=NULL;
+		}
+		else{
+			DoublyNode*temp2=tail;
+			tail->next=temp1;
+			tail=temp1;
+			tail->prev=temp2;
+		}
 		s++;
 	}
 	

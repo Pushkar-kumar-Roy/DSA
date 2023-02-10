@@ -20,23 +20,21 @@ string rtrim(const string &);
  */
 
 string appendAndDelete(string s, string t, int k) {
-    if(t.length()>s.length())
-    return "No";
-    int i;
-    for(i=0;i<t.length();i++){
-        if(s[i]!=t[i]) break;
-    }
-    int x=t.length();
-    if(i==x){
-        if(k<(s.length()-i))
-        return "No";
-        else
-        return "Yes";
-    }
-    int rem1=s.length()-i;
-    int rem2=t.length()-i;
-    if((rem1+rem2)<=k) return "Yes";
-    return "No";
+   if (k>=(s.size()+t.size())) {
+       return "Yes";
+   }
+   int i=0;
+   while(s[i]==t[i]){
+       i++;
+   }
+   int operation=s.size()-i;
+   operation+=t.size()-i;
+   if(k==operation) return "Yes";
+   else if(k<operation) return "No";
+   else{
+       if((k-operation)%2==0) return "Yes";
+       else return "No";
+   }
 }
 
 int main()
@@ -84,3 +82,4 @@ string rtrim(const string &str) {
 
     return s;
 }
+
